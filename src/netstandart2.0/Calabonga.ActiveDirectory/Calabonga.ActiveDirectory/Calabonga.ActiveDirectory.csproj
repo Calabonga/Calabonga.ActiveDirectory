@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Calabonga.ActiveDirectory</Title>
+		<Version>1.0.0-beta.1</Version>
+		<Authors>Calabonga</Authors>
+		<Company>Calabonga SOFT</Company>
+		<Description>Simple Active directory connection helper built-on another nuget-package</Description>
+		<Copyright>2024 © Calabonga</Copyright>
+		<PackageProjectUrl>https://github.com/Calabonga/Calabonga.ActiveDirectory</PackageProjectUrl>
+		<PackageIcon>logo.png</PackageIcon>
+		<RepositoryUrl>https://github.com/Calabonga/Calabonga.ActiveDirectory</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>calabonga;ldap;activedirectory;connector;core</PackageTags>
+		<PackageReleaseNotes>Prerelease version</PackageReleaseNotes>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="LdapForNet" Version="2.7.15" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\README.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
