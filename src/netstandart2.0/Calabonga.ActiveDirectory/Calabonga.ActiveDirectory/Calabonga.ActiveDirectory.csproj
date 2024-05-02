@@ -16,6 +16,11 @@
 		<PackageTags>calabonga;ldap;activedirectory;connector;core</PackageTags>
 		<PackageReleaseNotes>Prerelease version</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<IncludeSymbols>true</IncludeSymbols>
+		<IncludeSource>true</IncludeSource>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Deterministic>true</Deterministic>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,6 +28,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="..\..\..\..\LICENSE">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
 		<None Include="..\..\..\..\README.md">
 		  <Pack>True</Pack>
 		  <PackagePath>\</PackagePath>
