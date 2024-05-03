@@ -3,6 +3,7 @@ using System.Linq;
 using LdapForNet;
 using LdapForNet.Native;
 
+
 namespace Calabonga.ActiveDirectory
 {
     /// <summary>
@@ -10,6 +11,13 @@ namespace Calabonga.ActiveDirectory
     /// </summary>
     public static class LdapConnector
     {
+        /// <summary>
+        /// Check user exists in Active Directory through the LDAP
+        /// </summary>
+        /// <param name="ldapOptions"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static ConnectResult GetUserFromActiveDirectory(LdapConnectorOptions ldapOptions, string username, string password)
         {
             try
@@ -18,27 +26,27 @@ namespace Calabonga.ActiveDirectory
                 {
                     const string searchFilter = "(&(objectClass=user)(sAMAccountName={0}))";
                     cn.Connect(ldapOptions.Server, ldapOptions.Port);
-                    cn.Timeout = new TimeSpan(0, 0, ldapOptions.Timeout);
+
+                    if (ldapOptions.TrustAllCertificates)
+                    {
+                        cn.TrustAllCertificates();
+                    }
+
+                    cn.Timeout = new TimeSpan(0, 0, 30);
                     cn.Bind(Native.LdapAuthType.Simple, new LdapCredential { UserName = $"{ldapOptions.Domain}\\{username}", Password = password });
+
 
                     var entries = cn.Search(ldapOptions.BaseSearch, string.Format(searchFilter, username), scope: Native.LdapSearchScope.LDAP_SCOPE_SUBTREE);
                     if (!entries.Any())
                     {
-                        return new ConnectResult(new DirectoryUser(username));
+                        return new ConnectResult(DirectoryUser.Create(ldapOptions, username));
                     }
 
-                    var user = new DirectoryUser(username);
+                    var user = DirectoryUser.Create(ldapOptions, username);
 
-                    foreach (var element in entries)
+                    if (entries.Any())
                     {
-                        var directoryAttributes = element.DirectoryAttributes["memberof"];
-                        var values = directoryAttributes.GetValues<string>();
-                        foreach (var value in values)
-                        {
-                            var index = value.IndexOf(',');
-                            var group = value.Substring(0, index).Split('=')[1];
-                            user.Groups.Add(group);
-                        }
+                        DirectoryReader.TryGetValues(entries[0].DirectoryAttributes, user.Attributes);
                     }
 
                     return new ConnectResult(user);

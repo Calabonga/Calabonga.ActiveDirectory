@@ -1,4 +1,6 @@
-﻿namespace Calabonga.ActiveDirectory
+﻿using System.Collections.Generic;
+
+namespace Calabonga.ActiveDirectory
 {
     public class LdapConnectorOptions
     {
@@ -21,5 +23,15 @@
         /// For example, <example>"DC=domain,DC=com"</example>
         /// </summary>
         public string BaseSearch { get; set; }
+
+        /// <summary>
+        /// Parameters will fetch from Active Directory
+        /// </summary>
+        public List<ActiveDirectoryInfo> Attributes { get; set; }
+
+        /// <summary>
+        /// Allow to connect to LDAP with self-signed certificates
+        /// </summary>
+        public bool TrustAllCertificates { get; set; }
     }
 }

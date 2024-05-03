@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>Calabonga.ActiveDirectory</Title>
-		<Version>1.0.0-beta.1</Version>
+		<Version>1.0.0-beta.5</Version>
 		<Authors>Calabonga</Authors>
 		<Company>Calabonga SOFT</Company>
 		<Description>Simple Active directory connection helper built-on another nuget-package</Description>
@@ -14,7 +14,7 @@
 		<RepositoryUrl>https://github.com/Calabonga/Calabonga.ActiveDirectory</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>calabonga;ldap;activedirectory;connector;core</PackageTags>
-		<PackageReleaseNotes>Prerelease version</PackageReleaseNotes>
+		<PackageReleaseNotes>Attribute parser added for sone types</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IncludeSymbols>true</IncludeSymbols>
 		<IncludeSource>true</IncludeSource>
