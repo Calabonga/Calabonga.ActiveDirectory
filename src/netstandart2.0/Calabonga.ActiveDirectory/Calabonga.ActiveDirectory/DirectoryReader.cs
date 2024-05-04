@@ -31,7 +31,7 @@ namespace Calabonga.ActiveDirectory
                 {
                     if (item.Type == DirectoryAttributeType.Guid)
                     {
-                        item.Value = new Guid((Byte[])(Array)items["objectGUID"].GetValue<byte[]>());
+                        item.Value = new Guid((Byte[])(Array)items[item.Key].GetValue<byte[]>());
                     }
 
                     if (item.Type == DirectoryAttributeType.DateTime)
