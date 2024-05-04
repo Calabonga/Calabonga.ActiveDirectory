@@ -44,7 +44,14 @@ var options = new LdapConnectorOptions
 	BaseSearch = rootSearch,
 	Domain = domain,
 	Port = int.Parse(port),
-	Server = server
+	Server = server,
+	TrustAllCertificates = true,
+	Attributes = new List<ActiveDirectoryInfo>
+	{
+		new() { Key = "memberof", Type = DirectoryAttributeType.StringList },
+		new() { Key = "mail", Type = DirectoryAttributeType.String },
+		new() { Key = "objectGuid", Type = DirectoryAttributeType.Guid },
+	}
 };
 
 var result = LdapConnector.GetUserFromActiveDirectory(options, username, password);
