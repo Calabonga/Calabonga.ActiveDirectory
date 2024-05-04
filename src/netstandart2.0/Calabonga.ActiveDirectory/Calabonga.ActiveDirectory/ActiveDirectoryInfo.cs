@@ -3,7 +3,7 @@
     /// <summary>
     /// Information from Active Directory attribute
     /// </summary>
-    public class ActiveDirectoryInfo
+    public sealed class ActiveDirectoryInfo
     {
         /// <summary>
         /// Key to search

@@ -1,6 +1,6 @@
 ﻿namespace Calabonga.ActiveDirectory
 {
-    public class ConnectResult
+    public sealed class ConnectResult
     {
         public ConnectResult(DirectoryUser user)
         {

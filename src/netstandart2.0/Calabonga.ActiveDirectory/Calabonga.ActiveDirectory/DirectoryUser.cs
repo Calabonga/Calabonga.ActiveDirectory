@@ -7,7 +7,7 @@ namespace Calabonga.ActiveDirectory
     /// <summary>
     /// User found in Active Directory
     /// </summary>
-    public class DirectoryUser
+    public sealed class DirectoryUser
     {
         private DirectoryUser(string username)
         {
@@ -40,7 +40,8 @@ namespace Calabonga.ActiveDirectory
 
                 var item = Attributes.FirstOrDefault(x => x.Key == key);
 
-                return (T)item?.Value;
+                var value = (T)item?.Value;
+                return value;
             }
             catch
             {

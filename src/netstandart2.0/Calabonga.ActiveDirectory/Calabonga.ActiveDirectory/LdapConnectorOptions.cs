@@ -2,7 +2,10 @@
 
 namespace Calabonga.ActiveDirectory
 {
-    public class LdapConnectorOptions
+    /// <summary>
+    /// LDAP connector settings for establishing connection with Active Directory
+    /// </summary>
+    public sealed class LdapConnectorOptions
     {
         public string Server { get; set; }
 
