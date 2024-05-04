@@ -14,7 +14,7 @@
 		<RepositoryUrl>https://github.com/Calabonga/Calabonga.ActiveDirectory</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>calabonga;ldap;activedirectory;connector;core</PackageTags>
-		<PackageReleaseNotes>Attribute parser added for sone types</PackageReleaseNotes>
+		<PackageReleaseNotes>Attributes parser added for some types</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IncludeSymbols>true</IncludeSymbols>
 		<IncludeSource>true</IncludeSource>

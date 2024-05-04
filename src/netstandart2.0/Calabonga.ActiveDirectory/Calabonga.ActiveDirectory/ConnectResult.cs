@@ -1,21 +1,33 @@
 ﻿namespace Calabonga.ActiveDirectory
 {
-    public sealed class ConnectResult
-    {
-        public ConnectResult(DirectoryUser user)
-        {
-            User = user;
-        }
+	/// <summary>
+	/// Connection operation result
+	/// </summary>
+	public sealed class ConnectResult
+	{
+		public ConnectResult(DirectoryUser user)
+		{
+			User = user;
+		}
 
-        public ConnectResult(string errorMessage)
-        {
-            ErrorMessage = errorMessage;
-        }
+		public ConnectResult(string errorMessage)
+		{
+			ErrorMessage = errorMessage;
+		}
 
-        public DirectoryUser User { get; }
+		/// <summary>
+		/// User found in Active Directory
+		/// </summary>
+		public DirectoryUser User { get; }
 
-        public string ErrorMessage { get; }
+		/// <summary>
+		/// Error message when any errors occured
+		/// </summary>
+		public string ErrorMessage { get; }
 
-        public bool Ok => ErrorMessage == null && User != null;
-    }
+		/// <summary>
+		/// Operation success indicator
+		/// </summary>
+		public bool Ok => ErrorMessage == null && User != null;
+	}
 }
