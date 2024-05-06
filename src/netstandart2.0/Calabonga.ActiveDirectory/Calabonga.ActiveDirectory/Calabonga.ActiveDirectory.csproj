@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>Calabonga.ActiveDirectory</Title>
-		<Version>1.0.0-beta.7</Version>
+		<Version>1.0.0-beta.8</Version>
 		<Authors>Calabonga</Authors>
 		<Company>Calabonga SOFT</Company>
 		<Description>Simple Active directory connection helper built-on another nuget-package</Description>

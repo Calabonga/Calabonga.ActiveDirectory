@@ -21,21 +21,28 @@ namespace Calabonga.ActiveDirectory
         {
             try
             {
-                using (var cn = new LdapConnection())
+                using (var connection = new LdapConnection())
                 {
-                    const string searchFilter = "(&(objectClass=user)(sAMAccountName={0}))";
-                    cn.Connect(ldapOptions.Server, ldapOptions.Port);
+                    connection.Connect(ldapOptions.Server, ldapOptions.Port);
 
                     if (ldapOptions.TrustAllCertificates)
                     {
-                        cn.TrustAllCertificates();
+                        connection.TrustAllCertificates();
                     }
 
-                    cn.Timeout = new TimeSpan(0, 0, 30);
-                    cn.Bind(ldapOptions.LdapAuthType, new LdapCredential { UserName = $"{ldapOptions.Domain}\\{username}", Password = password });
+                    connection.Timeout = new TimeSpan(0, 0, ldapOptions.Timeout);
 
+                    connection.Bind(ldapOptions.LdapAuthType, new LdapCredential
+                    {
+                        UserName = $"{ldapOptions.Domain}\\{username}",
+                        Password = password
+                    });
 
-                    var entries = cn.Search(ldapOptions.BaseSearch, string.Format(searchFilter, username), scope: Native.LdapSearchScope.LDAP_SCOPE_SUBTREE);
+                    var entries = connection.Search(
+                        ldapOptions.BaseSearch,
+                        $"(&(objectClass=user)(sAMAccountName={username}))",
+                        scope: Native.LdapSearchScope.LDAP_SCOPE_SUBTREE);
+
                     if (!entries.Any())
                     {
                         return new ConnectResult(DirectoryUser.Create(ldapOptions, username));
