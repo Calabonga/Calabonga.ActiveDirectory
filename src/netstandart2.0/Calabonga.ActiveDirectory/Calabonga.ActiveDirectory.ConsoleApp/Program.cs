@@ -22,44 +22,44 @@ Console.WriteLine("Enter your DOMAIN (exp. \"DOMAINNAME\"):");
 var domain = Console.ReadLine();
 if (string.IsNullOrEmpty(domain))
 {
-	domain = Environment.GetEnvironmentVariable("LDAP_DOMAIN") ?? throw new ArgumentNullException("LDAP_DOMAIN");
+    domain = Environment.GetEnvironmentVariable("LDAP_DOMAIN") ?? throw new ArgumentNullException("LDAP_DOMAIN");
 }
 
 Console.WriteLine("Enter your port (default 389):");
 var port = Console.ReadLine();
 if (string.IsNullOrEmpty(port))
 {
-	port = Environment.GetEnvironmentVariable("LDAP_PORT") ?? "389";
+    port = Environment.GetEnvironmentVariable("LDAP_PORT") ?? "389";
 }
 
 Console.WriteLine("Enter your ActiveDirectory IP or DNS-name (exp. \"domain.com\"):");
 var server = Console.ReadLine();
 if (string.IsNullOrEmpty(server))
 {
-	server = Environment.GetEnvironmentVariable("LDAP_SERVER") ?? throw new ArgumentNullException("LDAP_SERVER");
+    server = Environment.GetEnvironmentVariable("LDAP_SERVER") ?? throw new ArgumentNullException("LDAP_SERVER");
 }
 
 var options = new LdapConnectorOptions
 {
-	BaseSearch = rootSearch,
-	Domain = domain,
-	Port = int.Parse(port),
-	Server = server,
-	TrustAllCertificates = true,
-	Attributes = new List<ActiveDirectoryInfo>
-	{
-		new() { Key = "memberof", Type = DirectoryAttributeType.StringList },
-		new() { Key = "mail", Type = DirectoryAttributeType.String },
-		new() { Key = "objectGuid", Type = DirectoryAttributeType.Guid },
-	}
+    BaseSearch = rootSearch,
+    Domain = domain,
+    Port = int.Parse(port),
+    Server = server,
+    TrustAllCertificates = true,
+    Attributes = new List<ActiveDirectoryInfo>
+    {
+        new() { Key = "memberof", Type = DirectoryAttributeType.StringList },
+        new() { Key = "mail", Type = DirectoryAttributeType.String },
+        new() { Key = "objectGuid", Type = DirectoryAttributeType.Guid },
+    }
 };
 
 var result = LdapConnector.GetUserFromActiveDirectory(options, username, password);
 
 if (result.Ok)
 {
-	foreach (var userGroup in result.User.Groups)
-	{
-		Console.WriteLine(userGroup);
-	}
+    foreach (var groups in result.User.Attributes)
+    {
+        Console.WriteLine(groups);
+    }
 }
